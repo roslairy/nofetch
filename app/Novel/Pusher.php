@@ -36,7 +36,7 @@ class Pusher{
     		$chapter = Chapter::find($mail->chapterId);
     		$message->subject('Push to kindle');
     		$message->from('kindle-push@crimro.me', 'kindle-push');
-    		$message->to('roslairy@kindle.cn', 'roslairy\'s android Device');
+    		$message->to('roslairy@crimro.me', 'roslairy\'s android Device');
     		$message->attachData($chapter->content, $mail->attachment);
     		$mail->state = 'pushed';
     		$mail->save();
