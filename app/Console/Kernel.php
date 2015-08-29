@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Novel\Analyst;
+use App\Novel\Downloader;
+use App\Novel\Pusher;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +27,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-                 ->hourly();
+        $schedule->call(function(){
+        	$analyst = new Analyst();
+        	$analyst->fetchAllNovel();
+        	$downloader = new Downloader();
+        	$downloader->downloadAllNovel();
+        	$pusher = new Pusher();
+        	$pusher->pushAllNovel();
+        	Pusher::fireMail();
+        })->cron('* * * * *');
     }
 }
