@@ -6,82 +6,32 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Utils;
+use App\Novel;
+use App\Novel\Detector_77nt;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use App\Novel\Analyst;
+use Illuminate\Support\Facades\Mail;
+use App\Novel\Pusher;
+use App\Chapter;
+use App\Novel\Downloader;
 
 class Test extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
+    public function test1(){
+		$ana = new Analyst();
+		$ana->fetchAllNovel();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
+    
+    public function test3(){
+    	$pusher = new Pusher();
+    	$pusher->pushAllNovel();
+    	$pusher->fireMail();
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+    
+    public function test2(){
+    	$dl = new Downloader();
+    	$dl->downloadAllNovel();
     }
 }
