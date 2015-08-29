@@ -39,4 +39,12 @@ class Test extends Controller
     	$de = new Detector_77nt(Novel::find(1));
     	$de->downloadAll();
     }
+    
+    public function pushOne(){
+    	Mail::send('email.empty', [], function(\Illuminate\Mail\Message $message){
+    		$message->subject('Push to kindle');
+    		$message->from('kindle-push@crimro.me', 'kindle-push');
+    		$message->to('roslairy@crimro.me', 'roslairy\'s android Device');
+    	});
+    }
 }
