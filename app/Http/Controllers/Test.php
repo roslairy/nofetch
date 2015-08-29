@@ -34,4 +34,9 @@ class Test extends Controller
     	$dl = new Downloader();
     	$dl->downloadAllNovel();
     }
+    
+    public function all(){
+    	$de = new Detector_77nt(Novel::find(1));
+    	$de->downloadAll();
+    }
 }
