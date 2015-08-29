@@ -43,7 +43,7 @@ class Test extends Controller
     public function pushOne(){
     	Mail::send('email.empty', [], function(\Illuminate\Mail\Message $message){
     		$message->subject('Push to kindle');
-    		$message->from('kindle-push@crimro.me', 'kindle-push');
+    		$message->from('roslairy@hotmail.com', 'kindle-push');
     		$message->to('roslairy@crimro.me', 'roslairy\'s android Device');
     	});
     }
