@@ -61,7 +61,7 @@ class Detector_77nt implements NovelDetector{
 	
 	public function downloadAll(){
 		foreach (Chapter::all() as $chapter){
-			if ($chapter->state != 'detected') return;
+			if ($chapter->state != 'detected') continue;
 			$dom = Utils::getDom($chapter->url);
 			$content = $dom->find('.content', 0)->text();
 			$content = str_replace(str_repeat('&nbsp;', 4), "\n\t", $content);
