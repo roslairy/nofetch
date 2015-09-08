@@ -19,6 +19,7 @@ class NoFetchMigration extends Migration
         	$table->string('name');
         	$table->string('author');
         	$table->string('website');
+        	$table->string('state');
         	$table->string('lastDetect');
         	$table->string('url');
         	$table->string('latestChapter');
@@ -27,18 +28,31 @@ class NoFetchMigration extends Migration
         	$table->increments('id');
         	$table->timestamps();
         	$table->string('name');
-        	$table->string('novel');
         	$table->integer('index');
         	$table->string('state');
         	$table->string('error');
         	$table->text('content');
         	$table->string('url');
+        	$table->integer('novel_id')->unsigned();
+        	$table->foreign('novel_id')->references('id')->on('novels');
         });
         Schema::create('configs', function (Blueprint $table){
         	$table->increments('id');
         	$table->timestamps();
         	$table->string('key');
         	$table->string('value');
+        });
+        Schema::create('mails', function(Blueprint $table){
+        	$table->increments('id');
+        	$table->timestamps();
+        	$table->string('state');
+        	$table->string('error');
+        	$table->string('name');
+        	$table->text('content');
+        	$table->integer('novel_id')->unsigned();
+        	$table->foreign('novel_id')->references('id')->on('novels');
+        	$table->integer('chapter_id')->unsigned();
+        	$table->foreign('chapter_id')->references('id')->on('chapters');
         });
     }
 
@@ -52,5 +66,6 @@ class NoFetchMigration extends Migration
         Schema::drop('novels');
         Schema::drop('chapters');
         Schema::drop('configs');
+        Schema::drop('mails');
     }
 }
