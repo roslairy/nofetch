@@ -11,7 +11,7 @@ class Analyst extends AbstractComponent {
 	}
 	
 	protected function fetchAllNovel() {
-		foreach ( Novel::all () as $novel ) {
+		foreach ( Novel::where ('state', '=', 'detect')->get() as $novel ) {
 			$this->fetchChapter ( $novel );
 		}
 	}
