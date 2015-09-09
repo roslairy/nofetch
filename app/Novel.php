@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Novel extends Model {
 	public function getNextDownloadChapter() {
-		$chapters = Chapter::where ( 'novel_id', '=', $this->id )->where ( 'state', '=', 'detected' )->orderBy ( 'index' )->take ( 1 )->get ();
+		$chapters = Chapter::where ( 'novel_id', '=', $this->id )->where ( 'state', '=', 'detected' )->where('index', '>', $this->latestChapter)->orderBy ( 'index' )->take ( 1 )->get ();
 		
 		if ($chapters->count () == 0)
 			return null;
