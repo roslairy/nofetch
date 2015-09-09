@@ -12,7 +12,7 @@
                         <label for="novelUrl" class="control-label">小说目录网址： <small class="text-primary">如: www.77nt.com/37637/</small></label>
                         <div class="input-group">
                             <div class="input-group-addon">http://</div>
-                            <input id="novelUrl" name="novelUrl" class="form-control" type="text">
+                            <input id="novelUrl" name="novelUrl" class="form-control" type="text" required>
                         </div>
                     </div>
                 </div>

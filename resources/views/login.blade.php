@@ -2,8 +2,9 @@
 <html>
 <head lang="zh">
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title></title>
+    <title>登陆 | Novel Fetcher</title>
     <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="img/favicon.ico">
 </head>
 <body class="align">
 
