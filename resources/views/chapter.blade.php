@@ -8,20 +8,18 @@
             <div class="table-responsive">
                 <table class="table table-hover table-plugin">
                     <thead>
-                    <td>#</td>
+                    <td>序号</td>
                     <td>名称</td>
                     <td>小说</td>
-                    <td>章节序号</td>
                     <td>字数</td>
                     <td>状态</td>
                     </thead>
                     <tbody>
                     @foreach($chapters as $chapter)
                     <tr>
-                        <td>{{ $chapter->id }}</td>
+                        <td>{{ $chapter->index }}</td>
                         <td>{{ $chapter->name }}</td>
                         <td>{{ $chapter->novel->name }}</td>
-                        <td>{{ $chapter->index }}</td>
                         @if($chapter->state == 'detected')
                         <td>未下载</td>
                         @else
