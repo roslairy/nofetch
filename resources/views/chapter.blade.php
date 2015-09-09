@@ -22,10 +22,10 @@
                         <td>{{ $chapter->name }}</td>
                         <td>{{ $chapter->novel->name }}</td>
                         <td>{{ $chapter->index }}</td>
-                        @if($chapter->state == 'downloaded')
-                        <td>{{ mb_strlen($chapter->content) }}</td>
-                        @else
+                        @if($chapter->state == 'detected')
                         <td>未下载</td>
+                        @else
+                        <td>{{ mb_strlen($chapter->content) }}</td>
                         @endif
                         <td>{{ trans('state.'.$chapter->state) }}</td>
                     </tr>
