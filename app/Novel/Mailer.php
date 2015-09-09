@@ -26,6 +26,10 @@ class Mailer extends AbstractComponent {
 	}
 	
 	protected function send() {
+
+		$mail = \App\Mail::getNextFireMail ();
+		if ($mail == null) return;
+
 		$result = Mail::raw ( '', function (Message $message) {
 			
 			$mail = \App\Mail::getNextFireMail ();
