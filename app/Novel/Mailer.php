@@ -14,11 +14,13 @@ class Mailer extends AbstractComponent {
 	
 	protected function fireMail() {
 		$mail = \App\Mail::getNextReadyMail ();
-		if ($mail == null)
-			return;
 		
-		$mail->state = 'fire';
-		$mail->save ();
+		if ($mail != null){
+		
+			$mail->state = 'fire';
+			$mail->save ();
+			
+		}
 		
 		$this->send ();
 	}
