@@ -99,7 +99,7 @@ class Admin extends Controller {
 		$data ['author'] = $novel->author;
 		$data ['state'] = $novel->state;
 		$data ['website'] = $novel->website;
-		$data ['url'] = substr($novel->url, 7);
+		$data ['url'] = $novel->url;
 		$data ['begin'] = $novel->latestChapter + 1;
 		return $data;
 	}

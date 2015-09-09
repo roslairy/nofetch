@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container main-container">
-    <h3 class="page-header">新建小说</h3>
+    <h3 class="page-header">小说信息</h3>
     <div class="row">
         <div class="col-md-10">
             <form method="post" action="{{ route('editSave') }}">
