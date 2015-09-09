@@ -5,6 +5,7 @@ namespace App\Novel;
 use App\Utils;
 use App\Chapter;
 use Purl\Url;
+use Carbon\Carbon;
 
 class Detector_77nt implements NovelDetector {
 	protected $novel;
@@ -43,6 +44,9 @@ class Detector_77nt implements NovelDetector {
 				break;
 			}
 		}
+		
+		$this->novel->lastDetect = Carbon::now()->toDateTimeString();
+		$this->novel->save();
 	}
 	public function downloadChapter() {
 		$chapter = $this->novel->getNextDownloadChapter ();
