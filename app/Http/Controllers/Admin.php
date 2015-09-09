@@ -48,7 +48,7 @@ class Admin extends Controller {
 	}
 	
 	public function chapter(){
-		$chapters = Chapter::with('novel')->paginate ( 10 );
+		$chapters = Chapter::orderBy('index', 'desc')->with('novel')->paginate ( 10 );
 		
 		return view ( 'chapter', [ 'chapters' => $chapters, 'pageName' => 'chapter' ] );
 	}
