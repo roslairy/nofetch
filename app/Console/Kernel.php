@@ -30,6 +30,6 @@ class Kernel extends ConsoleKernel {
 		$schedule->call ( function () {
 			$manager = new NoFManager;
 			$manager->run();
-		} )->cron ( '* * * * *' )->withoutOverlapping();
+		} )->cron ( '* * * * *' )->name('NoF')->withoutOverlapping();
 	}
 }
