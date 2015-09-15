@@ -3,6 +3,7 @@ namespace App\Novel;
 
 use App\Config;
 use ReflectionClass;
+use Illuminate\Support\Facades\Log;
 class NoFManager extends AbstractComponent{
 	
 	protected $components = [
@@ -20,6 +21,7 @@ class NoFManager extends AbstractComponent{
 	}
 	
 	public function run(){
+		Log::info("NofManager: Begin to tick, now tickCnt is {$this->tickCnt}.");
 		$this->tick();
 		$this->saveTick();
 	}
@@ -31,6 +33,7 @@ class NoFManager extends AbstractComponent{
 	protected function tick(){
 		foreach ($this->components as $component => $class){
 			if ($this->isComponentReady($component)){
+				Log::info("NofManager: Begin to run {$class}.");
 				$this->runComponent($class);
 				$this->tickComponent($component);
 			}
