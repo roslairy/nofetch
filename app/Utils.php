@@ -15,7 +15,8 @@ class Utils {
 	public static function getHtml($url) {
 		$client = new Client ();
 		$response = $client->get ( $url, [ 
-				'verify' => false 
+				'verify' => false,
+				'timeout' => 10
 		] );
 		if ($response->getStatusCode () != 200) {
 			$error = '%s: Bad HTTP response code, url is %s, status code is %d.';
