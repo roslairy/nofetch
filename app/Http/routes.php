@@ -38,3 +38,6 @@ Route::get ( 'test2', 'Test@test2' );
 Route::get ( 'test3', 'Test@test3' );
 Route::get ( 'all', 'Test@all' );
 Route::get ( 'push', 'Test@pushOne' );
+
+Route::get('/send', 'Admin@sendView');
+Route::post('/sendFile', 'Admin@send');

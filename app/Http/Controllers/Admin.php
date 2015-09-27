@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Chapter;
 use App\Mail;
 use App\Config;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Mail\Message;
 
 class Admin extends Controller {
 	
@@ -188,5 +190,28 @@ class Admin extends Controller {
 		Config::put('pushInterval', 1);
 		
 		return redirect()->route('setting');
+	}
+	
+	public function sendView(){
+		return view('sendView');
+	}
+	
+	public function send(){
+		if (!Input::hasFile('sendFile')) return 'no file';
+		$file = Input::file('sendFile');
+		$file->move(storage_path('send'), $file->getClientOriginalName());
+		Session::put('sendFile', $file->getClientOriginalName());
+
+		$result = \Illuminate\Support\Facades\Mail::raw ( '', function (\Illuminate\Mail\Message $message) {
+			$name = Session::get('sendFile');
+			Session::forget('sendFile');
+				
+			$message->from ( env ( 'MAIL_USERNAME' ), 'Pusher' );
+			$message->to ( env ( 'MAIL_TO' ), 'Kindle' );
+			$message->subject ( $name );
+			$message->attach(storage_path('send/'.$name));
+		} );
+		
+		return '<p>发送成功，3秒后返回</p><script type="text/javascript">setTimeout(function(){location.href="/send";}, 3000)</script>';
 	}
 }
